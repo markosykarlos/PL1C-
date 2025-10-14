@@ -59,7 +59,10 @@ int main()
             break;
         case 0:
             cout << "Sesion cerrada" << endl;
-        return 0;
+            break;
+        default:
+            cout << "Opción no valida" << endl;
         }
     }while (x != 0);
+    return 0;
 }
