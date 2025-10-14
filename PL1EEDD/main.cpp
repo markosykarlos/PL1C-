@@ -126,6 +126,32 @@ pedido Pila::desapilar()
 }
 
 int main()
-{
+{int x;
+    int n;
+    string f;
+    do{
+    ImprimirMenu();
+    cin >> x;
+    switch(x){
+case 1:
+    cout << "Cuantos pedidos quiere generar?: ";
+    cin >> n;
+    cout << "Se han generado " << n << " pedidos\n" << endl;
+    break;
+case 2:
+    cout << "A que fase quiere pasar?: ";
+    cin >> f;
+    cout << "Se ha pasado a fase " << f << endl;
+    break;
+case 3:
+    cout << "Estado del sistema\n" << endl;
+    break;
+case 4:
+    cout << "Caja de reparto de una moto\n" << endl;
+    break;
+case 0:
+    cout << "Sesion cerrada" << endl;
     return 0;
+    }
+}
 }
