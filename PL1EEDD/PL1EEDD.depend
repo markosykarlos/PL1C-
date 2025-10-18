@@ -1,4 +1,17 @@
 # depslib dependency file v1.0
-1760440945 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\main.cpp
+1760808647 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\main.cpp
 	<iostream>
+	<ctime>
+	"Editorial.h"
+
+1760799896 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorialelim.cpp
+
+1760805578 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorial.cpp
+	"Editorial.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1760808428 c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorial.h
+	<string>
 

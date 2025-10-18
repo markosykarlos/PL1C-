@@ -1,13 +1,15 @@
 #include <iostream>
 #include <ctime>
+#include "Editorial.h"
 
 using namespace std;
 
 int main()
-{
+{   srand(time(NULL));
     int x;
     int n;
     string f;
+    string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
     do{
         ImprimirMenu();
         cin >> x;
@@ -15,7 +17,6 @@ int main()
         case 1:
             cout << "Cuantos pedidos quiere generar?: ";
             cin >> n;
-            string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
             cout << "Se han generado " << n << " pedidos\n" << endl;
             break;
         case 2:
@@ -26,7 +27,7 @@ int main()
             break;
         case 3:
             cout << "Estado del sistema\n" << endl;
-            // funciones
+            mostrarEstadoSistema();
             break;
         case 4:
             // funciones
