@@ -1,29 +1,7 @@
 #include <iostream>
-
+#include <ctime>
 
 using namespace std;
-
-void ImprimirMenu(void)
-{
-    cout << "=== MENU ===" << endl;
-    cout << "1) Generar N pedidos" << endl;
-    cout << "2) Paso (Una FASE)" << endl;
-    cout << "3) Mostrar estado" << endl;
-    cout << "4) Paso COMPLETO (4fases)" << endl;
-    cout << "5) Ver caja de una libreria" << endl;
-    cout << "0) Salir\n" << endl;
-    cout << "Opcion: ";
-}
-
-struct pedido
-{
-    string id_editorial;
-    string id_pedido;
-    string cod_libro;
-    string materia;
-    string estado;
-    int unidades;
-};
 
 int main()
 {
@@ -37,7 +15,7 @@ int main()
         case 1:
             cout << "Cuantos pedidos quiere generar?: ";
             cin >> n;
-            // funciones
+            string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
             cout << "Se han generado " << n << " pedidos\n" << endl;
             break;
         case 2:
