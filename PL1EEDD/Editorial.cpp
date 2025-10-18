@@ -5,6 +5,9 @@
 
 using namespace std;
 
+Cola colaIniciado, colaAlmacen, colaImprenta, colaListo;
+Pila cajas[LIBRERIAS];
+
 // Destructor
 Cola::~Cola()
 {
@@ -86,4 +89,53 @@ int calcularSecuenciaAleatoria(void)
 int calcularSecuenciaAleatoria2(void)
 {
     return 10000 + rand() % 90000;
+}
+
+// Función complementaria de MostrarEstadoSistema(), aka "3"
+void mostrarCola(const Cola& cola, const string& nombre) {
+    cout << "COLA " << nombre << ":" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "| " << cola.contarElementos() << " pedidos en espera" << endl;
+    cout << "-----------------------------------------------" << endl;
+}
+
+void mostrarEstadoSistema() {
+    cout << "\n=== ESTADO DEL SISTEMA ===" << endl;
+
+    // Mostrar todas las colas
+    mostrarCola(colaIniciado, "INICIADO");
+    mostrarCola(colaAlmacen, "ALMACEN");
+    mostrarCola(colaImprenta, "IMPRENTA");
+    mostrarCola(colaListo, "LISTO");
+
+    // Mostrar cajas
+    cout << "\n=== CAJAS ==============" << endl;
+    for(int i = 0; i < LIBRERIAS; i++) {
+        cout << "Libreria " << i << ": " << cajas[i].contarElementos()
+             << "/" << CAP_CAJA << " pedidos" << endl;
+    }
+    cout << "==========================\n" << endl;
+}
+// Contar elementos en Cola
+int Cola::contarElementos() const {
+    int contador = 0;
+    pNodo actual = primero;
+
+    while (actual != NULL) {
+        contador++;
+        actual = actual->siguiente;
+    }
+    return contador;
+}
+
+// Contar elementos en Pila
+int Pila::contarElementos() const {
+    int contador = 0;
+    pNodo actual = cima;
+
+    while (actual != NULL) {
+        contador++;
+        actual = actual->siguiente;
+    }
+    return contador;
 }

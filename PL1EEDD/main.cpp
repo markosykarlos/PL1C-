@@ -4,9 +4,6 @@
 
 using namespace std;
 
-Cola colaIniciado, colaAlmacen, colaImprenta, colaListo;
-Pila cajas[LIBRERIAS];
-
 int main()
 {   srand(time(NULL));
     int x;
@@ -30,7 +27,7 @@ int main()
             break;
         case 3:
             cout << "Estado del sistema\n" << endl;
-            // funciones
+            mostrarEstadoSistema();
             break;
         case 4:
             // funciones

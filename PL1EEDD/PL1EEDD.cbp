@@ -32,8 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Clases.cpp" />
+		<Unit filename="Editorial.cpp">
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="Editorial.h" />
+		<Unit filename="Editorialelim.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>

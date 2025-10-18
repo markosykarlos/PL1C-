@@ -47,6 +47,8 @@ public:
     ~Cola();
     void encolar(pedido v);
     pedido desencolar();
+    int contarElementos() const;
+    bool estaVacia() const { return primero == NULL; }
 };
 
 class Pila
@@ -59,9 +61,12 @@ public:
     ~Pila();
     void apilar(pedido v);
     pedido desapilar();
+    int contarElementos() const;
+    bool estaVacia() const { return cima == NULL; }
 };
 
 // Declaración de Funciones
 void ImprimirMenu();
+void mostrarEstadoSistema();
 
 #endif // EDITORIAL_H_INCLUDED
