@@ -1,4 +1,9 @@
 #include "Editorial.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
 
 // Destructor
 Cola::~Cola()
@@ -22,9 +27,9 @@ void Cola::encolar(pedido v)
 pedido Cola::desencolar()
 {
     if (!primero)
-        return {"", "", "", "", "", 0};
+        return {-1, "", "", "", 0, ""};
 
-    int v = primero->valor;
+    pedido v = primero->valor;
     pNodo nodo = primero;
     primero = nodo->siguiente;
     if (!primero)
@@ -51,7 +56,7 @@ void Pila::apilar(pedido v)
 pedido Pila::desapilar()
 {
     if (!cima)
-        return {"", 0};
+        return {-1, "", "", "", 0, ""};
 
     pNodo nodo = cima;
     pedido v = nodo->valor;
@@ -66,8 +71,7 @@ void ImprimirMenu(void)
     cout << "1) Generar N pedidos" << endl;
     cout << "2) Paso (Una FASE)" << endl;
     cout << "3) Mostrar estado" << endl;
-    cout << "4) Paso COMPLETO (4fases)" << endl;
-    cout << "5) Ver caja de una libreria" << endl;
+    cout << "4) Ver caja de una libreria" << endl;
     cout << "0) Salir\n" << endl;
     cout << "Opcion: ";
 }
@@ -75,13 +79,11 @@ void ImprimirMenu(void)
 int calcularSecuenciaAleatoria(void)
 {
     int numaleat;
-    numaleat=rand()%7;
+    numaleat=rand()%6;
     return numaleat;
 }
 
 int calcularSecuenciaAleatoria2(void)
 {
-    int rando;
-    rando=rand()%9999;
-    return rando;
+    return 10000 + rand() % 90000;
 }

@@ -2,3 +2,14 @@
 1760440945 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\main.cpp
 	<iostream>
 
+1760799896 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorialelim.cpp
+
+1760805578 source:c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorial.cpp
+	"Editorial.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1760806111 c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorial.h
+	<string>
+
