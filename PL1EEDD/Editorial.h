@@ -22,7 +22,7 @@ struct pedido
 
 class Nodo
 {
-private:
+public:
     pedido valor;
     Nodo *siguiente;
     friend class Cola;
@@ -39,7 +39,7 @@ typedef Nodo *pNodo;
 
 class Cola
 {
-private:
+public:
     pNodo primero, ultimo;
 
 public:
@@ -67,6 +67,7 @@ public:
 
 // Declaración de Funciones
 void ImprimirMenu();
+void MostrarPedidosCreados(int n);
 void mostrarEstadoSistema();
 
 #endif // EDITORIAL_H_INCLUDED

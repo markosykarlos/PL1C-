@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -138,4 +139,81 @@ int Pila::contarElementos() const {
         actual = actual->siguiente;
     }
     return contador;
+}
+
+int GenerarLib(void)
+{
+    int numaleat;
+    numaleat=rand()%6;
+    return numaleat;
+}
+
+string GenerarNumPedido(void)
+{
+    int numaleat;
+    numaleat=rand()%99999;
+    return "P" + to_string(numaleat);
+}
+
+string GenerarCodLibro(void)
+{
+    int numaleat;
+    int numaleat2;
+    int indaleat;
+    char letras[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    numaleat=rand()%999;
+    indaleat=rand()%26;
+    numaleat=rand()%99;
+    return to_string(numaleat) + letras[indaleat] + to_string(numaleat2);
+}
+
+string GenerarMateria(){
+    int numaleat;
+    numaleat=rand()%6;
+    string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
+    return Materias[numaleat];
+}
+
+int GenerarUnidades(){
+    int numaleat;
+    numaleat=rand()%21;
+    return numaleat;
+}
+
+string GenerarEstado(int indice){
+    string Estados[] = {"Iniciado", "Almacén", "Imprenta", "Listo", "Caja"};
+    return Estados[indice];
+}
+
+pedido GenerarPedido(){
+    int lib = GenerarLib();
+    string id = GenerarNumPedido();
+    string codigo = GenerarCodLibro();
+    string materia = GenerarMateria();
+    int unidades = GenerarUnidades();
+    string estado = GenerarEstado(0);
+    pedido p = {lib, id, codigo, materia, unidades, estado};
+    return p;
+}
+
+void CrearPedidos(int n){
+
+}
+
+void MostrarPedidosCreados(int n){
+    int i;
+    for(i=0; i<n; i++){
+        pedido p = GenerarPedido();
+        colaIniciado.encolar(p);
+    }
+    Cola aux = colaIniciado;
+    cout << "-----------------------------------------------" << endl;
+    cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
+    cout << "-----------------------------------------------" << endl;
+    while(!aux.estaVacia()) {
+            pedido p = aux.primero->valor;
+        cout << p.id_editorial << "|  " << p.id_pedido << "|  " << p.cod_libro << "|  "
+        << p.materia << "|  " << p.unidades << "|  " << p.estado << "|  " << endl;
+        aux.desencolar();
+    }
 }

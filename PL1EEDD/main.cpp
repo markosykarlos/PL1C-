@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctime>
-#include "Editorial.h"
+#include "editorial.h"
 
 using namespace std;
 
@@ -9,7 +9,6 @@ int main()
     int x;
     int n;
     string f;
-    string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
     do{
         ImprimirMenu();
         cin >> x;
@@ -17,7 +16,8 @@ int main()
         case 1:
             cout << "Cuantos pedidos quiere generar?: ";
             cin >> n;
-            cout << "Se han generado " << n << " pedidos\n" << endl;
+            //CrearPedidos();
+            MostrarPedidosCreados(n);
             break;
         case 2:
             cout << "A que fase quiere pasar?: ";
