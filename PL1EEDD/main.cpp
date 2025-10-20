@@ -9,6 +9,8 @@ int main()
     int x;
     int n;
     string f;
+    generarPrede();
+    inicializarStock();
     do{
         ImprimirMenu();
         cin >> x;
@@ -16,25 +18,18 @@ int main()
         case 1:
             cout << "Cuantos pedidos quiere generar?: ";
             cin >> n;
-            //CrearPedidos();
             MostrarPedidosCreados(n);
             break;
         case 2:
-            cout << "A que fase quiere pasar?: ";
-            cin >> f;
-            // funciones
-            cout << "Se ha pasado a fase " << f << endl;
+            pasarFase();
             break;
         case 3:
             cout << "Estado del sistema\n" << endl;
             mostrarEstadoSistema();
+            mostrarStock();
             break;
         case 4:
-            // funciones
-            cout << "Han pasado todas las fases\n" << endl;
-            break;
-        case 5:
-            cout << "Caja de una libreria\n" << endl;
+            cout << "Ver caja de una libreria\n" << endl;
             // funciones
             break;
         case 0:
@@ -42,6 +37,12 @@ int main()
             break;
         default:
             cout << "Opción no valida" << endl;
+        }
+        if (x!=0){
+            cout << endl << "press to continue ";
+            cin.ignore();
+            cin.get();
+            system("cls");
         }
     }while (x != 0);
     return 0;

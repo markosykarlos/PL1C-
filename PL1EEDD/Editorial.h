@@ -20,6 +20,17 @@ struct pedido
     string estado;
 };
 
+struct StockLibro {
+    string cod_libro;
+    string materia;
+    int unidades;
+};
+
+struct NodoStock {
+    StockLibro libro;
+    NodoStock* siguiente;
+};
+
 class Nodo
 {
 public:
@@ -69,5 +80,12 @@ public:
 void ImprimirMenu();
 void MostrarPedidosCreados(int n);
 void mostrarEstadoSistema();
+void ejecutarPasoSimulacion();
+void generarPrede();
+void inicializarStock();
+void agregarLibroStock(const StockLibro& libro);
+StockLibro* buscarLibroEnStock(const string& cod_libro);
+void mostrarStock();
+void pasarFase();
 
 #endif // EDITORIAL_H_INCLUDED
