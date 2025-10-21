@@ -251,19 +251,14 @@ pedido GenerarPedido(){
 // Muestra el pedido creado
 void MostrarPedidosCreados(int n){
     int i;
-    for(i=0; i<n; i++){
-        pedido p = GenerarPedido();
-        colaIniciado.encolar(p);
-    }
-    Cola aux = colaIniciado;
     cout << "-----------------------------------------------" << endl;
     cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
     cout << "-----------------------------------------------" << endl;
-    while(!aux.estaVacia()) {
-            pedido p = aux.primero->valor;
+    for(i=0; i<n; i++){
+        pedido p = GenerarPedido();
+        colaIniciado.encolar(p);
         cout << p.id_editorial << "|  " << p.id_pedido << "|  " << p.cod_libro << "|  "
         << p.materia << "|  " << p.unidades << "|  " << p.estado << "|  " << endl;
-        aux.desencolar();
     }
 }
 
@@ -276,7 +271,7 @@ void inicializarStock() {
     StockLibro librosBase[] = {
         {"111A22", "Matematicas", 20},
         {"333B44", "Fisica", 15},
-        {"555C67", "Historia", 25},
+        {"555C67", "Historia", 9},
         {"777D88", "Lengua", 18},
         {"999E00", "Tecnologia", 12}
     };
@@ -287,7 +282,7 @@ void inicializarStock() {
         StockLibro nuevoLibro;
         nuevoLibro.cod_libro = GenerarCodLibro();
         nuevoLibro.materia = materias[rand() % 6];
-        nuevoLibro.unidades = 20 + rand() % 31;
+        nuevoLibro.unidades = rand() % 21;
         agregarLibroStock(nuevoLibro);
     }
 }

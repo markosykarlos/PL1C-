@@ -38,12 +38,6 @@ int main()
         default:
             cout << "Opción no valida" << endl;
         }
-        if (x!=0){
-            cout << endl << "press to continue ";
-            cin.ignore();
-            cin.get();
-            system("cls");
-        }
     }while (x != 0);
     return 0;
 }
