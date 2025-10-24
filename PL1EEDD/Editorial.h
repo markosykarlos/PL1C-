@@ -33,7 +33,7 @@ struct NodoStock {
 
 class Nodo
 {
-public:
+private:
     pedido valor;
     Nodo *siguiente;
     friend class Cola;
@@ -50,7 +50,7 @@ typedef Nodo *pNodo;
 
 class Cola
 {
-public:
+private:
     pNodo primero, ultimo;
 
 public:

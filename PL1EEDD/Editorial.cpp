@@ -154,7 +154,7 @@ void CrearStock(){
 }
 
 // Función complementaria de MostrarEstadoSistema()
-void mostrarCola(const Cola& cola, const string& nombre) {
+void Cola::mostrarCola(const Cola& cola, const string& nombre) {
     cout << endl << "COLA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
@@ -267,17 +267,15 @@ pedido GenerarPedido(){
 }
 
 // Muestra el pedido creado
-void MostrarPedidosCreados(int n){
-    int i;
-    cout << "-----------------------------------------------" << endl;
-    cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
-    cout << "-----------------------------------------------" << endl;
-    for(i=0; i<n; i++){
+void MostrarPedidosCreados(int n) {
+    // Generar y encolar los pedidos
+    for (int i = 0; i < n; i++) {
         pedido p = GenerarPedido();
         colaIniciado.encolar(p);
-        cout << p.id_editorial << "|  " << p.id_pedido << "|  " << p.cod_libro << "|  "
-        << p.materia << "|  " << p.unidades << "|  " << p.estado << "|  " << endl;
     }
+
+    // Mostrar la cola completa
+    colaIniciado.mostrarCola(colaIniciado, "Iniciado");
 }
 
 // Función que incializa el Stock :v
