@@ -254,10 +254,12 @@ string GenerarEstado(int indice){
 
 // A partir de las funciones de generación al azar anteriores genera un pedido
 pedido GenerarPedido(){
+    int numaleat;
+    numaleat=rand()%10;
     int lib = GenerarLib();
     string id = GenerarNumPedido();
-    //string codigo = GenerarCodLibro();
-    //string materia = GenerarMateria();
+    string codigo = stock[numaleat].cod_libro;
+    string materia = stock[numaleat].materia;
     int unidades = GenerarUnidades();
     string estado = GenerarEstado(0);
     pedido p = {lib, id, codigo, materia, unidades, estado};
