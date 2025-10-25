@@ -124,9 +124,9 @@ string GenerarCodLibro(void)
     int numaleat2;
     int indaleat;
     char letras[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    numaleat=rand()%1000; // Habria que cambia para que genere 000 en vez de 0 en el menor de los casos, así siempre tendría 3 num + 1 letra + 2 num
+    numaleat= 100 + rand()%900; // Habria que cambia para que genere 000 en vez de 0 en el menor de los casos, así siempre tendría 3 num + 1 letra + 2 num
     indaleat=rand()%26;
-    numaleat2=rand()%100; // igual a arriba
+    numaleat2= 10 + rand()%90; // igual a arriba
     return to_string(numaleat) + letras[indaleat] + to_string(numaleat2);
 }
 
@@ -170,6 +170,31 @@ void Cola::mostrarCola(const Cola& cola, const string& nombre) {
             pedido p = actual->valor;
             cout << p.id_editorial << " |  " << p.id_pedido << " |  " << p.cod_libro << " |  "
                  << p.materia;
+            cout << "\t|  " << p.unidades << " |  " << p.estado << endl;
+
+            actual = actual->siguiente;
+            contador++;
+        }
+        cout << "--------------------------------------------------------------------" << endl;
+        cout << "Total: " << contador << " pedidos" << endl << endl;
+    }
+}
+
+void Pila::mostrarPila(const Pila& pila, const string& nombre) {
+    cout << endl << "CAJA " << nombre << ":" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "Id|  Codigo|      Materia|  U|      Estado|" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+
+    if (pila.estaVacia()) {
+        cout << "                    VACIA" << endl;
+    } else {
+        pNodo actual = pila.cima;
+        int contador = 0;
+
+        while (actual != NULL) {
+            pedido p = actual->valor;
+            cout << p.id_pedido << " |  " << p.cod_libro << " |  " << p.materia;
             cout << "\t|  " << p.unidades << " |  " << p.estado << endl;
 
             actual = actual->siguiente;
@@ -429,4 +454,16 @@ void pasarFase() {
 
     cout << "=== PASO COMPLETO FINALIZADO ===" << endl;
     cout << "Total general: " << totalProcesados << " pedidos procesados en todas las fases." << endl << endl;
+}
+
+void VerCaja(){
+int LIB;
+    cout << "Introduce el id de la libreria (0-" << LIBRERIAS - 1 << "): ";
+    cin >> LIB;
+
+    if (LIB < 0 || LIB >= LIBRERIAS) {
+        cout << "Id de libreria invalido.\n";
+        return;
+    }
+    cajas[LIB].mostrarPila(cajas[LIB], "Libreria " + to_string(LIB));
 }
