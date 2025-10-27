@@ -26,10 +26,10 @@ struct StockLibro {
     int unidades;
 };
 
-struct NodoStock {
-    StockLibro libro;
-    NodoStock* siguiente;
-};
+//struct NodoStock {
+//    StockLibro libro;
+//    NodoStock* siguiente;
+//};
 
 class Nodo
 {
@@ -60,6 +60,7 @@ public:
     pedido desencolar();
     int contarElementos() const;
     bool estaVacia() const { return primero == NULL; }
+    void mostrarCola(const string& nombre);
 };
 
 class Pila
@@ -74,18 +75,21 @@ public:
     pedido desapilar();
     int contarElementos() const;
     bool estaVacia() const { return cima == NULL; }
+    void mostrarPila(const string& nombre);
 };
 
 // Declaración de Funciones
 void ImprimirMenu();
 void MostrarPedidosCreados(int n);
 void mostrarEstadoSistema();
-void ejecutarPasoSimulacion();
+void pasarFase();
 void generarPrede();
-void inicializarStock();
-void agregarLibroStock(const StockLibro& libro);
+//void inicializarStock();
+//void agregarLibroStock(const StockLibro& libro);
+void CrearStock()
 StockLibro* buscarLibroEnStock(const string& cod_libro);
 void mostrarStock();
 void pasarFase();
+void VerCaja();
 
 #endif // EDITORIAL_H_INCLUDED

@@ -8,9 +8,9 @@ int main()
 {   srand(time(NULL));
     int x;
     int n;
-    string f;
+//    string f;
     generarPrede();
-    inicializarStock();
+    CrearStock();
     do{
         ImprimirMenu();
         cin >> x;
@@ -30,7 +30,7 @@ int main()
             break;
         case 4:
             cout << "Ver caja de una libreria\n" << endl;
-            // funciones
+            VerCaja();
             break;
         case 0:
             cout << "Sesion cerrada" << endl;

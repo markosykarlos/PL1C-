@@ -9,7 +9,7 @@ using namespace std;
 Cola colaIniciado, colaAlmacen, colaImprenta, colaListo;
 Pila cajas[LIBRERIAS];
 StockLibro stock[MAX_TITULOS];
-NodoStock* stockPun = NULL;
+//NodoStock* stockPun = NULL;
 
 // Destructor
 Cola::~Cola()
@@ -71,9 +71,11 @@ pedido Pila::desapilar()
     return v;
 }
 
-void generarPrede() {
+void generarPrede()
+{
     // Pedidos predeterminados
-    pedido pedidosFijos[] = {
+    pedido pedidosFijos[] =
+    {
         {0, "P10001", "111A22", "Matematicas", 5, "Iniciado"},
         {1, "P10002", "333B44", "Fisica", 3, "Iniciado"},
         {2, "P10003", "555C67", "Historia", 8, "Almacen"},
@@ -81,14 +83,22 @@ void generarPrede() {
         {4, "P10005", "999E00", "Tecnologia", 4, "Listo"}
     };
 
-    for(int i = 0; i < 5; i++) {
-        if (pedidosFijos[i].estado == "Iniciado") {
+    for(int i = 0; i < 5; i++)
+    {
+        if (pedidosFijos[i].estado == "Iniciado")
+        {
             colaIniciado.encolar(pedidosFijos[i]);
-        } else if (pedidosFijos[i].estado == "Almacen") {
+        }
+        else if (pedidosFijos[i].estado == "Almacen")
+        {
             colaAlmacen.encolar(pedidosFijos[i]);
-        } else if (pedidosFijos[i].estado == "Imprenta") {
+        }
+        else if (pedidosFijos[i].estado == "Imprenta")
+        {
             colaImprenta.encolar(pedidosFijos[i]);
-        } else if (pedidosFijos[i].estado == "Listo") {
+        }
+        else if (pedidosFijos[i].estado == "Listo")
+        {
             colaListo.encolar(pedidosFijos[i]);
         }
     }
@@ -107,14 +117,14 @@ void ImprimirMenu(void)
 
 //int calcularSecuenciaAleatoria(void)
 //{
-  //  int numaleat;
-    //numaleat=rand()%6;
-   // return numaleat;
+//  int numaleat;
+//numaleat=rand()%6;
+// return numaleat;
 //}
 
 //int calcularSecuenciaAleatoria2(void)
 //{
-  //  return 10000 + rand() % 90000;
+//  return 10000 + rand() % 90000;
 //}
 
 // Genera un código de libro al azar
@@ -131,14 +141,16 @@ string GenerarCodLibro(void)
 }
 
 // Genera una materia aleatoria
-string GenerarMateria(){
+string GenerarMateria()
+{
     int numaleat;
     numaleat=rand()%6;
     string Materias[] = {"Matematicas","Fisica","Tecnologia","Musica","Historia","Lengua"};
     return Materias[numaleat];
 }
 
-StockLibro GenerarStock(){
+StockLibro GenerarStock()
+{
     StockLibro st;
     st.cod_libro = GenerarCodLibro();
     st.materia = GenerarMateria();
@@ -146,32 +158,30 @@ StockLibro GenerarStock(){
     return st;
 }
 
-void CrearStock(){
+void CrearStock()
+{
     int i;
-    for(i=0; i<MAX_TITULOS; i++){
+    for(i=0; i<MAX_TITULOS; i++)
+    {
         stock[i] = GenerarStock();
     }
 }
 
 // Función complementaria de MostrarEstadoSistema()
-void Cola::mostrarCola(const Cola& cola, const string& nombre) {
+void Cola::mostrarCola(const string& nombre) { // Cambiar a esta firma
     cout << endl << "COLA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-
-    if (cola.estaVacia()) {
+    if (estaVacia()) {
         cout << "                    VACIA" << endl;
     } else {
-        pNodo actual = cola.primero;
+        pNodo actual = primero;
         int contador = 0;
-
         while (actual != NULL) {
             pedido p = actual->valor;
             cout << p.id_editorial << " |  " << p.id_pedido << " |  " << p.cod_libro << " |  "
-                 << p.materia;
-            cout << "\t|  " << p.unidades << " |  " << p.estado << endl;
-
+                 << p.materia << "\t|  " << p.unidades << " |  " << p.estado << endl;
             actual = actual->siguiente;
             contador++;
         }
@@ -180,23 +190,20 @@ void Cola::mostrarCola(const Cola& cola, const string& nombre) {
     }
 }
 
-void Pila::mostrarPila(const Pila& pila, const string& nombre) {
+void Pila::mostrarPila(const string& nombre) const { // Cambiar a esta firma
     cout << endl << "CAJA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Id|  Codigo|      Materia|  U|      Estado|" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-
-    if (pila.estaVacia()) {
+    if (estaVacia()) {
         cout << "                    VACIA" << endl;
     } else {
-        pNodo actual = pila.cima;
+        pNodo actual = cima;
         int contador = 0;
-
         while (actual != NULL) {
             pedido p = actual->valor;
-            cout << p.id_pedido << " |  " << p.cod_libro << " |  " << p.materia;
-            cout << "\t|  " << p.unidades << " |  " << p.estado << endl;
-
+            cout << p.id_pedido << " |  " << p.cod_libro << " |  " << p.materia
+                 << "\t|  " << p.unidades << " |  " << p.estado << endl;
             actual = actual->siguiente;
             contador++;
         }
@@ -208,28 +215,25 @@ void Pila::mostrarPila(const Pila& pila, const string& nombre) {
 // Opcion 3 del menu
 void mostrarEstadoSistema() {
     cout << "\n=== ESTADO DEL SISTEMA ===" << endl;
-
-    // Mostrar pedidos
-    mostrarCola(colaIniciado, "INICIADO");
-    mostrarCola(colaAlmacen, "ALMACEN");
-    mostrarCola(colaImprenta, "IMPRENTA");
-    mostrarCola(colaListo, "LISTO");
-
-    // Mostrar cajas
+    colaIniciado.mostrarCola("INICIADO"); // Cambiar a esta sintaxis
+    colaAlmacen.mostrarCola("ALMACEN");
+    colaImprenta.mostrarCola("IMPRENTA");
+    colaListo.mostrarCola("LISTO");
     cout << "\n=== CAJAS ===" << endl;
     for(int i = 0; i < LIBRERIAS; i++) {
-        cout << "Libreria " << i << ": " << cajas[i].contarElementos()
-             << "/" << CAP_CAJA << " pedidos" << endl;
+        cout << "Libreria " << i << ": " << cajas[i].contarElementos() << "/" << CAP_CAJA << " pedidos" << endl;
     }
     cout << "================\n" << endl;
 }
 
 // Contar elementos en Cola
-int Cola::contarElementos() const {
+int Cola::contarElementos() const
+{
     int contador = 0;
     pNodo actual = primero;
 
-    while (actual != NULL) {
+    while (actual != NULL)
+    {
         contador++;
         actual = actual->siguiente;
     }
@@ -237,11 +241,13 @@ int Cola::contarElementos() const {
 }
 
 // Contar elementos en Pila
-int Pila::contarElementos() const {
+int Pila::contarElementos() const
+{
     int contador = 0;
     pNodo actual = cima;
 
-    while (actual != NULL) {
+    while (actual != NULL)
+    {
         contador++;
         actual = actual->siguiente;
     }
@@ -265,22 +271,25 @@ string GenerarNumPedido(void)
 }
 
 // Genera una unidad aleatoria
-int GenerarUnidades(){
+int GenerarUnidades()
+{
     int numaleat;
     numaleat=rand()%21;
     return numaleat;
 }
 
 // En base a la variable Indicre se decide el estado del pedido
-string GenerarEstado(int indice){
+string GenerarEstado(int indice)
+{
     string Estados[] = {"Iniciado", "Almacén", "Imprenta", "Listo", "Caja"};
     return Estados[indice];
 }
 
 // A partir de las funciones de generación al azar anteriores genera un pedido
-pedido GenerarPedido(){
+pedido GenerarPedido()
+{
     int numaleat;
-    numaleat=rand()%10;
+    numaleat=rand()%MAX_TITULOS;
     int lib = GenerarLib();
     string id = GenerarNumPedido();
     string codigo = stock[numaleat].cod_libro;
@@ -292,9 +301,11 @@ pedido GenerarPedido(){
 }
 
 // Muestra el pedido creado
-void MostrarPedidosCreados(int n) {
+void MostrarPedidosCreados(int n)
+{
     // Generar y encolar los pedidos
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         pedido p = GenerarPedido();
         colaIniciado.encolar(p);
     }
@@ -304,74 +315,75 @@ void MostrarPedidosCreados(int n) {
 }
 
 // Función que incializa el Stock :v
-void inicializarStock() {
-    string materias[] = {"Matematicas", "Fisica", "Tecnologia", "Musica", "Historia", "Lengua"};
+//void inicializarStock() {
+//  string materias[] = {"Matematicas", "Fisica", "Tecnologia", "Musica", "Historia", "Lengua"};
 
-    int cantidadLibros = 6 + rand() % 3; // Modificar en función del stock inicial deseado, aka no se que hacer con esto por ahora
+//int cantidadLibros = 6 + rand() % 3; // Modificar en función del stock inicial deseado, aka no se que hacer con esto por ahora
 
-    StockLibro librosBase[] = {
-        {"111A22", "Matematicas", 20},
-        {"333B44", "Fisica", 15},
-        {"555C67", "Historia", 9},
-        {"777D88", "Lengua", 18},
-        {"999E00", "Tecnologia", 12}
-    };
-    for(int i = 0; i < 5; i++) {
-        agregarLibroStock(librosBase[i]);
-    }
-    for(int i = 0; i < cantidadLibros; i++) {
-        StockLibro nuevoLibro;
-        nuevoLibro.cod_libro = GenerarCodLibro();
-        nuevoLibro.materia = materias[rand() % 6];
-        nuevoLibro.unidades = rand() % 21;
-        agregarLibroStock(nuevoLibro);
-    }
-}
+//StockLibro librosBase[] = {
+//  {"111A22", "Matematicas", 20},
+//   {"333B44", "Fisica", 15},
+//       //{"555C67", "Historia", 9},
+//     {"777D88", "Lengua", 18},
+//   {"999E00", "Tecnologia", 12}
+//    };
+//  for(int i = 0; i < 5; i++) {
+//    agregarLibroStock(librosBase[i]);
+//    }
+//  for(int i = 0; i < cantidadLibros; i++) {
+//    StockLibro nuevoLibro;
+//  nuevoLibro.cod_libro = GenerarCodLibro();
+//        //nuevoLibro.materia = materias[rand() % 6];
+//      nuevoLibro.unidades = rand() % 21;
+//    agregarLibroStock(nuevoLibro);
+//    }
+//}
 
 // Agrega un libro a la lista se stock
-void agregarLibroStock(const StockLibro& libro) {
-    NodoStock* nuevo = new NodoStock;
-    nuevo->libro = libro;
-    nuevo->siguiente = stockPun;
-    stockPun = nuevo;
-}
+//void agregarLibroStock(const StockLibro& libro) {
+//  NodoStock* nuevo = new NodoStock;
+//nuevo->libro = libro;
+//    nuevo->siguiente = stockPun;
+//  stockPun = nuevo;
+//}
 
 // Busca un libro en stock
-StockLibro* buscarLibroEnStock(const string& cod_libro) {
-    NodoStock* actual = stockPun;
-    while(actual != NULL) {
-        if(actual->libro.cod_libro == cod_libro) {
-            return &(actual->libro); // Encotro el libro en stock
+StockLibro* buscarLibroEnStock(const string& cod_libro)
+{
+    for (int i = 0; i < MAX_TITULOS; i++)
+    {
+        if (stock[i].cod_libro == cod_libro)
+        {
+            return &stock[i]; // Encontró el libro en stock
         }
-        actual = actual->siguiente;
     }
-    return NULL;  // No encotro el libro en stock
+    return NULL; // No encontró el libro en stock
 }
 
 // Se encarga de mostrar exclusivamente el stock, complementario a mostrarEstado()
-void mostrarStock() {
+void mostrarStock()
+{
     cout << "\n=== STOCK ACTUAL ===" << endl;
     cout << "Codigo Libro | Materia      | Unidades" << endl;
     cout << "-------------------------------------" << endl;
 
-    NodoStock* actual = stockPun;
-    while(actual != NULL) {
-        cout << actual->libro.cod_libro << "   | "
-             << actual->libro.materia;
-        if(actual->libro.materia.length() < 8) cout << "\t";
-        cout << "\t| " << actual->libro.unidades << endl;
-        actual = actual->siguiente;
+    for (int i = 0; i < MAX_TITULOS; i++)
+    {
+        cout << stock[i].cod_libro << "   | "
+             << stock[i].materia << "\t| " << stock[i].unidades << endl;
     }
     cout << "-------------------------------------" << endl;
 }
 
-void pasarFase() {
+void pasarFase()
+{
     cout << "=== EJECUTANDO PASO COMPLETO DE SIMULACION ===" << endl;
     int totalProcesados = 0;
 
     // FASE 1: INICIADO -> ALMACEN
     int pedidosProcesados = 0;
-    while (!colaIniciado.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO) {
+    while (!colaIniciado.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    {
         pedido p = colaIniciado.desencolar();
         p.estado = "Almacen";
         colaAlmacen.encolar(p);
@@ -383,17 +395,21 @@ void pasarFase() {
 
     // FASE 2: ALMACEN -> IMPRENTA o LISTO
     pedidosProcesados = 0;
-    while (!colaAlmacen.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO) {
+    while (!colaAlmacen.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    {
         pedido p = colaAlmacen.desencolar();
 
         StockLibro* libroStock = buscarLibroEnStock(p.cod_libro);
 
-        if (libroStock != NULL && libroStock->unidades >= p.unidades) {
+        if (libroStock != NULL && libroStock->unidades >= p.unidades)
+        {
             libroStock->unidades -= p.unidades;
             p.estado = "Listo";
             colaListo.encolar(p);
             cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> LISTO (Stock suficiente)" << endl;
-        } else {
+        }
+        else
+        {
             p.estado = "Imprenta";
             colaImprenta.encolar(p);
             cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> IMPRENTA (Falta stock)" << endl;
@@ -405,18 +421,24 @@ void pasarFase() {
 
     // FASE 3: IMPRENTA -> LISTO
     pedidosProcesados = 0;
-    while (!colaImprenta.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO) {
+    while (!colaImprenta.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    {
         pedido p = colaImprenta.desencolar();
 
         StockLibro* libroStock = buscarLibroEnStock(p.cod_libro);
-        if (libroStock == NULL) {
-            StockLibro nuevoLibro;
-            nuevoLibro.cod_libro = p.cod_libro;
-            nuevoLibro.materia = p.materia;
-            nuevoLibro.unidades = TAM_LOTE;
-            agregarLibroStock(nuevoLibro);
-            cout << "Nuevo libro añadido al stock: " << p.cod_libro << endl;
-        } else {
+        for (int i = 0; i < MAX_TITULOS; i++)
+        {
+            if (stock[i].unidades == 0)   // Usa un slot vacío
+            {
+                stock[i].cod_libro = p.cod_libro;
+                stock[i].materia = p.materia;
+                stock[i].unidades = TAM_LOTE;
+                cout << "Nuevo libro añadido al stock: " << p.cod_libro << endl;
+                break;
+            }
+        }
+        else
+        {
             libroStock->unidades += TAM_LOTE;
             cout << "Stock aumentado para " << p.cod_libro << ": +" << TAM_LOTE << " unidades" << endl;
         }
@@ -431,16 +453,19 @@ void pasarFase() {
 
     // FASE 4: LISTO -> CAJAS
     pedidosProcesados = 0;
-    while (!colaListo.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO) {
+    while (!colaListo.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    {
         pedido p = colaListo.desencolar();
         p.estado = "Caja";
 
         int libreria = p.id_editorial;
 
-        if (cajas[libreria].contarElementos() >= CAP_CAJA) {
+        if (cajas[libreria].contarElementos() >= CAP_CAJA)
+        {
             cout << "¡Caja de libreria " << libreria << " enviada! ("
                  << cajas[libreria].contarElementos() << " pedidos)" << endl;
-            while (!cajas[libreria].estaVacia()) {
+            while (!cajas[libreria].estaVacia())
+            {
                 cajas[libreria].desapilar();
             }
         }
@@ -456,12 +481,14 @@ void pasarFase() {
     cout << "Total general: " << totalProcesados << " pedidos procesados en todas las fases." << endl << endl;
 }
 
-void VerCaja(){
-int LIB;
+void VerCaja()
+{
+    int LIB;
     cout << "Introduce el id de la libreria (0-" << LIBRERIAS - 1 << "): ";
     cin >> LIB;
 
-    if (LIB < 0 || LIB >= LIBRERIAS) {
+    if (LIB < 0 || LIB >= LIBRERIAS)
+    {
         cout << "Id de libreria invalido.\n";
         return;
     }
