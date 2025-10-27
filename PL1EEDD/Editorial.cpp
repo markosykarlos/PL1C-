@@ -190,7 +190,7 @@ void Cola::mostrarCola(const string& nombre) { // Cambiar a esta firma
     }
 }
 
-void Pila::mostrarPila(const string& nombre) const { // Cambiar a esta firma
+void Pila::mostrarPila(const string& nombre) { // Cambiar a esta firma
     cout << endl << "CAJA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Id|  Codigo|      Materia|  U|      Estado|" << endl;
@@ -311,7 +311,7 @@ void MostrarPedidosCreados(int n)
     }
 
     // Mostrar la cola completa
-    colaIniciado.mostrarCola(colaIniciado, "Iniciado");
+    colaIniciado.mostrarCola("Iniciado");
 }
 
 // Función que incializa el Stock :v
@@ -424,17 +424,19 @@ void pasarFase()
     while (!colaImprenta.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
     {
         pedido p = colaImprenta.desencolar();
-
         StockLibro* libroStock = buscarLibroEnStock(p.cod_libro);
-        for (int i = 0; i < MAX_TITULOS; i++)
+        if (libroStock == NULL) // Si no existe en stock, crea uno nuevo
         {
-            if (stock[i].unidades == 0)   // Usa un slot vacío
+            for (int i = 0; i < MAX_TITULOS; i++)
             {
-                stock[i].cod_libro = p.cod_libro;
-                stock[i].materia = p.materia;
-                stock[i].unidades = TAM_LOTE;
-                cout << "Nuevo libro añadido al stock: " << p.cod_libro << endl;
-                break;
+                if (stock[i].unidades == 0) // Usa un slot vacío
+                {
+                    stock[i].cod_libro = p.cod_libro;
+                    stock[i].materia = p.materia;
+                    stock[i].unidades = TAM_LOTE;
+                    cout << "Nuevo libro añadido al stock: " << p.cod_libro << endl;
+                    break;
+                }
             }
         }
         else
@@ -492,5 +494,5 @@ void VerCaja()
         cout << "Id de libreria invalido.\n";
         return;
     }
-    cajas[LIB].mostrarPila(cajas[LIB], "Libreria " + to_string(LIB));
+    cajas[LIB].mostrarPila("Libreria " + to_string(LIB));
 }

@@ -86,10 +86,10 @@ void pasarFase();
 void generarPrede();
 //void inicializarStock();
 //void agregarLibroStock(const StockLibro& libro);
-void CrearStock()
+void CrearStock();
 StockLibro* buscarLibroEnStock(const string& cod_libro);
 void mostrarStock();
-void pasarFase();
+//void pasarFase();
 void VerCaja();
 
 #endif // EDITORIAL_H_INCLUDED
