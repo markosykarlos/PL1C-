@@ -9,7 +9,7 @@ int main()
     int x;
     int n;
 //    string f;
-    generarPrede();
+//    generarPrede();
     CrearStock();
     do{
         ImprimirMenu();
