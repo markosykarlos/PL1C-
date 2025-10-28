@@ -297,7 +297,6 @@ void MostrarPedidosCreados(int n)
         colaIniciado.encolar(p);
     }
 
-    // Mostrar la cola completa
     colaIniciado.mostrarCola("Iniciado");
 }
 

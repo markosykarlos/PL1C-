@@ -78,7 +78,7 @@ void ImprimirMenu();
 void MostrarPedidosCreados(int n);
 void mostrarEstadoSistema();
 void pasarFase();
-void generarPrede();
+//void generarPrede();
 void CrearStock();
 StockLibro* buscarLibroEnStock(const string& cod_libro);
 void mostrarStock();
