@@ -26,11 +26,6 @@ struct StockLibro {
     int unidades;
 };
 
-//struct NodoStock {
-//    StockLibro libro;
-//    NodoStock* siguiente;
-//};
-
 class Nodo
 {
 private:
@@ -84,12 +79,9 @@ void MostrarPedidosCreados(int n);
 void mostrarEstadoSistema();
 void pasarFase();
 void generarPrede();
-//void inicializarStock();
-//void agregarLibroStock(const StockLibro& libro);
 void CrearStock();
 StockLibro* buscarLibroEnStock(const string& cod_libro);
 void mostrarStock();
-//void pasarFase();
 void VerCaja();
 
 #endif // EDITORIAL_H_INCLUDED
