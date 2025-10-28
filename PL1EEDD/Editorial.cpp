@@ -70,38 +70,38 @@ pedido Pila::desapilar()
     return v;
 }
 
-void generarPrede()
-{
+//void generarPrede()
+//{
     // Pedidos predeterminados
-    pedido pedidosFijos[] =
-    {
-        {0, "P10001", "111A22", "Matematicas", 5, "Iniciado"},
-        {1, "P10002", "333B44", "Fisica", 3, "Iniciado"},
-        {2, "P10003", "555C67", "Historia", 8, "Almacen"},
-        {3, "P10004", "777D88", "Lengua", 6, "Imprenta"},
-        {4, "P10005", "999E00", "Tecnologia", 4, "Listo"}
-    };
+  //  pedido pedidosFijos[] =
+//    {
+        //{0, "P10001", "111A22", "Matematicas", 5, "Iniciado"},
+      //  {1, "P10002", "333B44", "Fisica", 3, "Iniciado"},
+    //    {2, "P10003", "555C67", "Historia", 8, "Almacen"},
+        //{3, "P10004", "777D88", "Lengua", 6, "Imprenta"},
+      //  {4, "P10005", "999E00", "Tecnologia", 4, "Listo"}
+    //};
 
-    for(int i = 0; i < 5; i++)
-    {
-        if (pedidosFijos[i].estado == "Iniciado")
-        {
-            colaIniciado.encolar(pedidosFijos[i]);
-        }
-        else if (pedidosFijos[i].estado == "Almacen")
-        {
-            colaAlmacen.encolar(pedidosFijos[i]);
-        }
-        else if (pedidosFijos[i].estado == "Imprenta")
-        {
-            colaImprenta.encolar(pedidosFijos[i]);
-        }
-        else if (pedidosFijos[i].estado == "Listo")
-        {
-            colaListo.encolar(pedidosFijos[i]);
-        }
-    }
-}
+  //  for(int i = 0; i < 5; i++)
+//    {
+        //if (pedidosFijos[i].estado == "Iniciado")
+      //  {
+    //        colaIniciado.encolar(pedidosFijos[i]);
+  //      }
+//        else if (pedidosFijos[i].estado == "Almacen")
+        //{
+      //      colaAlmacen.encolar(pedidosFijos[i]);
+    //    }
+  //      else if (pedidosFijos[i].estado == "Imprenta")
+//        {
+          //  colaImprenta.encolar(pedidosFijos[i]);
+        //}
+      //  else if (pedidosFijos[i].estado == "Listo")
+    //    {
+  //          colaListo.encolar(pedidosFijos[i]);
+//}
+  //  }
+//}
 
 void ImprimirMenu(void)
 {
