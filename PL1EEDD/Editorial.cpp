@@ -9,7 +9,6 @@ using namespace std;
 Cola colaIniciado, colaAlmacen, colaImprenta, colaListo;
 Pila cajas[LIBRERIAS];
 StockLibro stock[MAX_TITULOS];
-//NodoStock* stockPun = NULL;
 
 // Destructor
 Cola::~Cola()
@@ -114,18 +113,6 @@ void ImprimirMenu(void)
     cout << "0) Salir\n" << endl;
     cout << "Opcion: ";
 }
-
-//int calcularSecuenciaAleatoria(void)
-//{
-//  int numaleat;
-//numaleat=rand()%6;
-// return numaleat;
-//}
-
-//int calcularSecuenciaAleatoria2(void)
-//{
-//  return 10000 + rand() % 90000;
-//}
 
 // Genera un código de libro al azar
 string GenerarCodLibro(void)
@@ -313,39 +300,6 @@ void MostrarPedidosCreados(int n)
     // Mostrar la cola completa
     colaIniciado.mostrarCola("Iniciado");
 }
-
-// Función que incializa el Stock :v
-//void inicializarStock() {
-//  string materias[] = {"Matematicas", "Fisica", "Tecnologia", "Musica", "Historia", "Lengua"};
-
-//int cantidadLibros = 6 + rand() % 3; // Modificar en función del stock inicial deseado, aka no se que hacer con esto por ahora
-
-//StockLibro librosBase[] = {
-//  {"111A22", "Matematicas", 20},
-//   {"333B44", "Fisica", 15},
-//       //{"555C67", "Historia", 9},
-//     {"777D88", "Lengua", 18},
-//   {"999E00", "Tecnologia", 12}
-//    };
-//  for(int i = 0; i < 5; i++) {
-//    agregarLibroStock(librosBase[i]);
-//    }
-//  for(int i = 0; i < cantidadLibros; i++) {
-//    StockLibro nuevoLibro;
-//  nuevoLibro.cod_libro = GenerarCodLibro();
-//        //nuevoLibro.materia = materias[rand() % 6];
-//      nuevoLibro.unidades = rand() % 21;
-//    agregarLibroStock(nuevoLibro);
-//    }
-//}
-
-// Agrega un libro a la lista se stock
-//void agregarLibroStock(const StockLibro& libro) {
-//  NodoStock* nuevo = new NodoStock;
-//nuevo->libro = libro;
-//    nuevo->siguiente = stockPun;
-//  stockPun = nuevo;
-//}
 
 // Busca un libro en stock
 StockLibro* buscarLibroEnStock(const string& cod_libro)
