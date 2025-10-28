@@ -379,45 +379,33 @@ void pasarFase()
 {
     cout << "=== EJECUTANDO PASO COMPLETO DE SIMULACION ===" << endl;
     int totalProcesados = 0;
-
-    // FASE 1: INICIADO -> ALMACEN
     int pedidosProcesados = 0;
-    while (!colaIniciado.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
-    {
-        pedido p = colaIniciado.desencolar();
-        p.estado = "Almacen";
-        colaAlmacen.encolar(p);
-        pedidosProcesados++;
-        cout << "Pedido " << p.id_pedido << " movido: INICIADO -> ALMACEN" << endl;
-    }
-    totalProcesados += pedidosProcesados;
-    cout << "FASE 1 completada. " << pedidosProcesados << " pedidos procesados." << endl;
 
-    // FASE 2: ALMACEN -> IMPRENTA o LISTO
+    // FASE 4: LISTO -> CAJAS
     pedidosProcesados = 0;
-    while (!colaAlmacen.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    while (!colaListo.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
     {
-        pedido p = colaAlmacen.desencolar();
+        pedido p = colaListo.desencolar();
+        p.estado = "Caja";
 
-        StockLibro* libroStock = buscarLibroEnStock(p.cod_libro);
+        int libreria = p.id_editorial;
 
-        if (libroStock != NULL && libroStock->unidades >= p.unidades)
+        if (cajas[libreria].contarElementos() >= CAP_CAJA)
         {
-            libroStock->unidades -= p.unidades;
-            p.estado = "Listo";
-            colaListo.encolar(p);
-            cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> LISTO (Stock suficiente)" << endl;
+            cout << "¡Caja de libreria " << libreria << " enviada! ("
+                 << cajas[libreria].contarElementos() << " pedidos)" << endl;
+            while (!cajas[libreria].estaVacia())
+            {
+                cajas[libreria].desapilar();
+            }
         }
-        else
-        {
-            p.estado = "Imprenta";
-            colaImprenta.encolar(p);
-            cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> IMPRENTA (Falta stock)" << endl;
-        }
+
+        cajas[libreria].apilar(p);
+        cout << "Pedido " << p.id_pedido << " movido: LISTO -> CAJA (Libreria " << libreria << ")" << endl;
         pedidosProcesados++;
     }
     totalProcesados += pedidosProcesados;
-    cout << "FASE 2 completada. " << pedidosProcesados << " pedidos procesados." << endl;
+    cout << "FASE 4 completada. " << pedidosProcesados << " pedidos procesados." << endl;
 
     // FASE 3: IMPRENTA -> LISTO
     pedidosProcesados = 0;
@@ -453,31 +441,43 @@ void pasarFase()
     totalProcesados += pedidosProcesados;
     cout << "FASE 3 completada. " << pedidosProcesados << " pedidos procesados." << endl;
 
-    // FASE 4: LISTO -> CAJAS
+    // FASE 2: ALMACEN -> IMPRENTA o LISTO
     pedidosProcesados = 0;
-    while (!colaListo.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    while (!colaAlmacen.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
     {
-        pedido p = colaListo.desencolar();
-        p.estado = "Caja";
+        pedido p = colaAlmacen.desencolar();
 
-        int libreria = p.id_editorial;
+        StockLibro* libroStock = buscarLibroEnStock(p.cod_libro);
 
-        if (cajas[libreria].contarElementos() >= CAP_CAJA)
+        if (libroStock != NULL && libroStock->unidades >= p.unidades)
         {
-            cout << "¡Caja de libreria " << libreria << " enviada! ("
-                 << cajas[libreria].contarElementos() << " pedidos)" << endl;
-            while (!cajas[libreria].estaVacia())
-            {
-                cajas[libreria].desapilar();
-            }
+            libroStock->unidades -= p.unidades;
+            p.estado = "Listo";
+            colaListo.encolar(p);
+            cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> LISTO (Stock suficiente)" << endl;
         }
-
-        cajas[libreria].apilar(p);
-        cout << "Pedido " << p.id_pedido << " movido: LISTO -> CAJA (Libreria " << libreria << ")" << endl;
+        else
+        {
+            p.estado = "Imprenta";
+            colaImprenta.encolar(p);
+            cout << "Pedido " << p.id_pedido << " movido: ALMACEN -> IMPRENTA (Falta stock)" << endl;
+        }
         pedidosProcesados++;
     }
     totalProcesados += pedidosProcesados;
-    cout << "FASE 4 completada. " << pedidosProcesados << " pedidos procesados." << endl;
+    cout << "FASE 2 completada. " << pedidosProcesados << " pedidos procesados." << endl;
+
+    // FASE 1: INICIADO -> ALMACEN
+    while (!colaIniciado.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
+    {
+        pedido p = colaIniciado.desencolar();
+        p.estado = "Almacen";
+        colaAlmacen.encolar(p);
+        pedidosProcesados++;
+        cout << "Pedido " << p.id_pedido << " movido: INICIADO -> ALMACEN" << endl;
+    }
+    totalProcesados += pedidosProcesados;
+    cout << "FASE 1 completada. " << pedidosProcesados << " pedidos procesados." << endl;
 
     cout << "=== PASO COMPLETO FINALIZADO ===" << endl;
     cout << "Total general: " << totalProcesados << " pedidos procesados en todas las fases." << endl << endl;
