@@ -383,7 +383,7 @@ void pasarFase()
         }
         else
         {
-            libroStock->unidades += TAM_LOTE;
+            libroStock->unidades += TAM_LOTE -libroStock->unidades;
             cout << "Stock aumentado para " << p.cod_libro << ": +" << TAM_LOTE << " unidades" << endl;
         }
 
