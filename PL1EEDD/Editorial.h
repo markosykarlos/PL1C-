@@ -55,7 +55,7 @@ public:
     pedido desencolar();
     int contarElementos() const;
     bool estaVacia() const { return primero == NULL; }
-    void mostrarCola(const string& nombre);
+    void mostrarCola(string nombre);
 };
 
 class Pila
@@ -70,7 +70,7 @@ public:
     pedido desapilar();
     int contarElementos() const;
     bool estaVacia() const { return cima == NULL; }
-    void mostrarPila(const string& nombre);
+    void mostrarPila(string nombre);
 };
 
 // Declaración de Funciones
@@ -80,7 +80,7 @@ void mostrarEstadoSistema();
 void pasarFase();
 //void generarPrede();
 void CrearStock();
-StockLibro* buscarLibroEnStock(const string& cod_libro);
+StockLibro* buscarLibroEnStock(string cod_libro);
 void mostrarStock();
 void VerCaja();
 
