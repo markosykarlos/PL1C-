@@ -422,6 +422,7 @@ void pasarFase()
     cout << "FASE 2 completada. " << pedidosProcesados << " pedidos procesados." << endl;
 
     // FASE 1: INICIADO -> ALMACEN
+    pedidosProcesados = 0;
     while (!colaIniciado.estaVacia() && pedidosProcesados < N_PEDIDOS_PASO)
     {
         pedido p = colaIniciado.desencolar();
