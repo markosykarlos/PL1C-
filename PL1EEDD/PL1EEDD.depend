@@ -16,17 +16,17 @@
 1761649480 c:\users\lukal\onedrive\documentos\github\pl1c-\pl1eedd\editorial.h
 	<string>
 
-1761042180 source:c:\users\marko\documents\github\pl1c-\pl1eedd\editorial.cpp
+1761650357 source:c:\users\marko\documents\github\pl1c-\pl1eedd\editorial.cpp
 	"Editorial.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<string>
 
-1761607282 c:\users\marko\documents\github\pl1c-\pl1eedd\editorial.h
+1761650526 c:\users\marko\documents\github\pl1c-\pl1eedd\editorial.h
 	<string>
 
-1761576993 source:c:\users\marko\documents\github\pl1c-\pl1eedd\main.cpp
+1761650513 source:c:\users\marko\documents\github\pl1c-\pl1eedd\main.cpp
 	<iostream>
 	<ctime>
 	"editorial.h"
