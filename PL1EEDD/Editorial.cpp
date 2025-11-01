@@ -155,7 +155,7 @@ void CrearStock()
 }
 
 // Función complementaria de MostrarEstadoSistema()
-void Cola::mostrarCola(const string& nombre) { // Cambiar a esta firma
+void Cola::mostrarCola(string nombre) { // Cambiar a esta firma
     cout << endl << "COLA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
@@ -177,7 +177,7 @@ void Cola::mostrarCola(const string& nombre) { // Cambiar a esta firma
     }
 }
 
-void Pila::mostrarPila(const string& nombre) { // Cambiar a esta firma
+void Pila::mostrarPila(string nombre) { // Cambiar a esta firma
     cout << endl << "CAJA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Id|  Codigo|      Materia|  U|      Estado|" << endl;
@@ -249,7 +249,7 @@ int GenerarLib(void)
     return numaleat;
 }
 
-//Genera un número de pedido aleatorio (0-99998)
+//Genera un número de pedido aleatorio (10000-99999)
 string GenerarNumPedido(void)
 {
     int numaleat;
@@ -257,7 +257,7 @@ string GenerarNumPedido(void)
     return "P" + to_string(numaleat);
 }
 
-// Genera una unidad aleatoria
+// Genera una unidad aleatoria entre 0- 20
 int GenerarUnidades()
 {
     int numaleat;
@@ -301,7 +301,7 @@ void MostrarPedidosCreados(int n)
 }
 
 // Busca un libro en stock
-StockLibro* buscarLibroEnStock(const string& cod_libro)
+StockLibro* buscarLibroEnStock(string cod_libro)
 {
     for (int i = 0; i < MAX_TITULOS; i++)
     {
@@ -328,6 +328,7 @@ void mostrarStock()
     cout << "-------------------------------------" << endl;
 }
 
+// Función que avanza el estado de cada pedido en 1, función principal de la opción 2
 void pasarFase()
 {
     cout << "=== EJECUTANDO PASO COMPLETO DE SIMULACION ===" << endl;
@@ -382,7 +383,7 @@ void pasarFase()
         }
         else
         {
-            libroStock->unidades += TAM_LOTE;
+            libroStock->unidades += TAM_LOTE -libroStock->unidades;
             cout << "Stock aumentado para " << p.cod_libro << ": +" << TAM_LOTE << " unidades" << endl;
         }
 
@@ -436,6 +437,7 @@ void pasarFase()
     cout << "Total general: " << totalProcesados << " pedidos procesados en todas las fases." << endl << endl;
 }
 
+// Muestra la caja, función principal de la opción 4
 void VerCaja()
 {
     int LIB;
