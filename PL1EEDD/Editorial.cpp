@@ -136,6 +136,7 @@ string GenerarMateria()
     return Materias[numaleat];
 }
 
+//Genera 1 stock al azar
 StockLibro GenerarStock()
 {
     StockLibro st;
@@ -145,6 +146,7 @@ StockLibro GenerarStock()
     return st;
 }
 
+//Genera el stock entero que va a servir como base para el resto de ordenes
 void CrearStock()
 {
     int i;
@@ -210,13 +212,8 @@ void Pila::mostrarPila(string nombre)   // Cambiar a esta firma
             pedido p = actual->valor;
             cout << "|" << p.id_pedido << "\t| "
                  << p.cod_libro << " | "
-                 << p.materia /*<< "\t"*/;
-
-            // Ajuste para materia corta (< 8 caracteres)
-            if (p.materia.length() < 8)
-                cout << "\t";
-
-            cout << "| " << p.unidades << "\t| "
+                 << p.materia << "\t"
+                 << "| " << p.unidades << "\t| "
                  << p.estado << endl;
             actual = actual->siguiente;
             contador++;
@@ -243,7 +240,7 @@ void mostrarEstadoSistema()
 }
 
 // Contar elementos en Cola
-int Cola::contarElementos() const
+int Cola::contarElementos()
 {
     int contador = 0;
     pNodo actual = primero;
@@ -257,7 +254,7 @@ int Cola::contarElementos() const
 }
 
 // Contar elementos en Pila
-int Pila::contarElementos() const
+int Pila::contarElementos()
 {
     int contador = 0;
     pNodo actual = cima;

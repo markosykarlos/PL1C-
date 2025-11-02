@@ -53,7 +53,7 @@ public:
     ~Cola();
     void encolar(pedido v);
     pedido desencolar();
-    int contarElementos() const;
+    int contarElementos() ;
     bool estaVacia() const { return primero == NULL; }
     void mostrarCola(string nombre);
 };
@@ -68,7 +68,7 @@ public:
     ~Pila();
     void apilar(pedido v);
     pedido desapilar();
-    int contarElementos() const;
+    int contarElementos() ;
     bool estaVacia() const { return cima == NULL; }
     void mostrarPila(string nombre);
 };
