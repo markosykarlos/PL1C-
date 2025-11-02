@@ -210,7 +210,7 @@ void Pila::mostrarPila(string nombre)   // Cambiar a esta firma
             pedido p = actual->valor;
             cout << "|" << p.id_pedido << "\t| "
                  << p.cod_libro << " | "
-                 << p.materia;
+                 << p.materia /*<< "\t"*/;
 
             // Ajuste para materia corta (< 8 caracteres)
             if (p.materia.length() < 8)
