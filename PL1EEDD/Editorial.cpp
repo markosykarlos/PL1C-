@@ -72,35 +72,35 @@ pedido Pila::desapilar()
 
 //void generarPrede()
 //{
-    // Pedidos predeterminados
-  //  pedido pedidosFijos[] =
+// Pedidos predeterminados
+//  pedido pedidosFijos[] =
 //    {
-        //{0, "P10001", "111A22", "Matematicas", 5, "Iniciado"},
-      //  {1, "P10002", "333B44", "Fisica", 3, "Iniciado"},
-    //    {2, "P10003", "555C67", "Historia", 8, "Almacen"},
-        //{3, "P10004", "777D88", "Lengua", 6, "Imprenta"},
-      //  {4, "P10005", "999E00", "Tecnologia", 4, "Listo"}
-    //};
+//{0, "P10001", "111A22", "Matematicas", 5, "Iniciado"},
+//  {1, "P10002", "333B44", "Fisica", 3, "Iniciado"},
+//    {2, "P10003", "555C67", "Historia", 8, "Almacen"},
+//{3, "P10004", "777D88", "Lengua", 6, "Imprenta"},
+//  {4, "P10005", "999E00", "Tecnologia", 4, "Listo"}
+//};
 
-  //  for(int i = 0; i < 5; i++)
+//  for(int i = 0; i < 5; i++)
 //    {
-        //if (pedidosFijos[i].estado == "Iniciado")
-      //  {
-    //        colaIniciado.encolar(pedidosFijos[i]);
-  //      }
+//if (pedidosFijos[i].estado == "Iniciado")
+//  {
+//        colaIniciado.encolar(pedidosFijos[i]);
+//      }
 //        else if (pedidosFijos[i].estado == "Almacen")
-        //{
-      //      colaAlmacen.encolar(pedidosFijos[i]);
-    //    }
-  //      else if (pedidosFijos[i].estado == "Imprenta")
+//{
+//      colaAlmacen.encolar(pedidosFijos[i]);
+//    }
+//      else if (pedidosFijos[i].estado == "Imprenta")
 //        {
-          //  colaImprenta.encolar(pedidosFijos[i]);
-        //}
-      //  else if (pedidosFijos[i].estado == "Listo")
-    //    {
-  //          colaListo.encolar(pedidosFijos[i]);
+//  colaImprenta.encolar(pedidosFijos[i]);
 //}
-  //  }
+//  else if (pedidosFijos[i].estado == "Listo")
+//    {
+//          colaListo.encolar(pedidosFijos[i]);
+//}
+//  }
 //}
 
 void ImprimirMenu(void)
@@ -155,20 +155,34 @@ void CrearStock()
 }
 
 // Función complementaria de MostrarEstadoSistema()
-void Cola::mostrarCola(string nombre) { // Cambiar a esta firma
+void Cola::mostrarCola(string nombre)   // Cambiar a esta firma
+{
     cout << endl << "COLA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-    cout << "Lib|     Id|  Codigo|      Materia|  U|      Estado|" << endl;
+    cout << "|Lib\t|Id\t|Codigo\t|Materia\t|U\t|Estado" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-    if (estaVacia()) {
+    if (estaVacia())
+    {
         cout << "                    VACIA" << endl;
-    } else {
+    }
+    else
+    {
         pNodo actual = primero;
         int contador = 0;
-        while (actual != NULL) {
+        while (actual != NULL)
+        {
             pedido p = actual->valor;
-            cout << p.id_editorial << " |  " << p.id_pedido << " |  " << p.cod_libro << " |  "
-                 << p.materia << "\t|  " << p.unidades << " |  " << p.estado << endl;
+            cout << "|" << p.id_editorial << "\t|"
+                 << p.id_pedido << "\t|"
+                 << p.cod_libro << "\t|"
+                 << p.materia << "\t";
+
+            // Ajuste para materia: si es corta, añade un tab extra
+            if (p.materia.length() < 8)
+                cout << "\t";
+
+            cout << "| " << p.unidades << "\t| "
+                 << p.estado << endl;
             actual = actual->siguiente;
             contador++;
         }
@@ -177,20 +191,33 @@ void Cola::mostrarCola(string nombre) { // Cambiar a esta firma
     }
 }
 
-void Pila::mostrarPila(string nombre) { // Cambiar a esta firma
+void Pila::mostrarPila(string nombre)   // Cambiar a esta firma
+{
     cout << endl << "CAJA " << nombre << ":" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-    cout << "Id|  Codigo|      Materia|  U|      Estado|" << endl;
+    cout << "|Id\t|Codigo\t | Materia\t|U\t|Estado" << endl;
     cout << "--------------------------------------------------------------------" << endl;
-    if (estaVacia()) {
+    if (estaVacia())
+    {
         cout << "                    VACIA" << endl;
-    } else {
+    }
+    else
+    {
         pNodo actual = cima;
         int contador = 0;
-        while (actual != NULL) {
+        while (actual != NULL)
+        {
             pedido p = actual->valor;
-            cout << p.id_pedido << " |  " << p.cod_libro << " |  " << p.materia
-                 << "\t|  " << p.unidades << " |  " << p.estado << endl;
+            cout << "|" << p.id_pedido << "\t| "
+                 << p.cod_libro << " | "
+                 << p.materia;
+
+            // Ajuste para materia corta (< 8 caracteres)
+            if (p.materia.length() < 8)
+                cout << "\t";
+
+            cout << "| " << p.unidades << "\t| "
+                 << p.estado << endl;
             actual = actual->siguiente;
             contador++;
         }
@@ -200,14 +227,16 @@ void Pila::mostrarPila(string nombre) { // Cambiar a esta firma
 }
 
 // Opcion 3 del menu
-void mostrarEstadoSistema() {
+void mostrarEstadoSistema()
+{
     cout << "\n=== ESTADO DEL SISTEMA ===" << endl;
     colaIniciado.mostrarCola("INICIADO"); // Cambiar a esta sintaxis
     colaAlmacen.mostrarCola("ALMACEN");
     colaImprenta.mostrarCola("IMPRENTA");
     colaListo.mostrarCola("LISTO");
     cout << "\n=== CAJAS ===" << endl;
-    for(int i = 0; i < LIBRERIAS; i++) {
+    for(int i = 0; i < LIBRERIAS; i++)
+    {
         cout << "Libreria " << i << ": " << cajas[i].contarElementos() << "/" << CAP_CAJA << " pedidos" << endl;
     }
     cout << "================\n" << endl;
@@ -317,15 +346,21 @@ StockLibro* buscarLibroEnStock(string cod_libro)
 void mostrarStock()
 {
     cout << "\n=== STOCK ACTUAL ===" << endl;
-    cout << "Codigo Libro | Materia      | Unidades" << endl;
+    cout << "Codigo Libro | Materia          | Unidades" << endl;
     cout << "-------------------------------------" << endl;
 
     for (int i = 0; i < MAX_TITULOS; i++)
     {
-        cout << stock[i].cod_libro << "   | "
-             << stock[i].materia << "\t| " << stock[i].unidades << endl;
+        cout << stock[i].cod_libro << "       | "
+             << stock[i].materia;
+        if (stock[i].materia.length() <= 8)
+        {
+            cout << "\t"; // Agrega tabulador solo si la materia es corta
+        }
+        cout << "\t| " << stock[i].unidades << endl;
     }
-    cout << "-------------------------------------" << endl;
+
+cout << "-------------------------------------" << endl;
 }
 
 // Función que avanza el estado de cada pedido en 1, función principal de la opción 2
